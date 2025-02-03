@@ -1,15 +1,17 @@
 # Import accuracy score
 from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.model_selection import cross_val_score
 
 # # Function to predict and evaluate
-def evaluate_model(model, X_test_scaled, y_test):
-    # Predict the loan eligibility on the testing set
-    y_pred = model.predict(X_test_scaled)
+def evaluate_model(model, xtest, ytest):
+    
+    ypred = model.predict(xtest)
+    accuracy = accuracy_score(ytest, ypred)
+    cm = confusion_matrix(ytest, ypred)
+    
+    return accuracy, cm
 
-    # Calculate the accuracy score
-    accuracy = accuracy_score(y_pred, y_test)
-
-    # Calculate the confusion matrix
-    confusion_mat = confusion_matrix(y_test, y_pred)
-
-    return accuracy, confusion_mat
+def cross_validate_model(model, xtrain, ytrain, cv=5):
+   
+    scores = cross_val_score(model, xtrain, ytrain, cv=cv)
+    return scores.mean(), scores.std()

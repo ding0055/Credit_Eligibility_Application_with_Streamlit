@@ -1,2 +1,2 @@
-from .train_model import train_RFmodel
+from .train_model import train_logistic_regression, train_random_forest
 from .predict_model import evaluate_model
