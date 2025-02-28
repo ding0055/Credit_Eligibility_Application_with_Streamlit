@@ -22,6 +22,8 @@ rf_pickle = open("models/RFmodel.pkl", "rb")
 rf_model = pickle.load(rf_pickle)
 rf_pickle.close()
 
+with open("models/scaler.pkl", "rb") as scaler_file:
+    scaler = pickle.load(scaler_file)
 
 # Prepare the form to collect user inputs
 with st.form("user_inputs"):
@@ -112,8 +114,11 @@ if submitted:
         Property_Area_Rural, Property_Area_Semiurban, Property_Area_Urban
     ]]
 
+    prediction_input_scaled = scaler.transform(prediction_input)
+
+
     # Make prediction
-    new_prediction = rf_model.predict(prediction_input)
+    new_prediction = rf_model.predict(prediction_input_scaled)
 
     # Display result
     st.subheader("Prediction Result:")

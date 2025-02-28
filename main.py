@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print(f"Logistic Regression Confusion Matrix:\n{lr_cm}")
 
     # Train Random Forest model
-    rf_model = train_random_forest(xtrain_scaled, ytrain, n_estimators=100, max_depth=4, max_features='sqrt')
+    rf_model = train_random_forest(xtrain_scaled, ytrain, n_estimators=2, max_depth=2, max_features=10)
     plot_feature_importance(rf_model, X)
     rf_accuracy, rf_cm = evaluate_model(rf_model, xtest_scaled, ytest)
     print(f"Random Forest Accuracy: {rf_accuracy}")

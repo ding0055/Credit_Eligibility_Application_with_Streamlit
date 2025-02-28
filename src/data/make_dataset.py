@@ -2,6 +2,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
+import pickle
 
 def load_and_preprocess_data(data_path):
     
@@ -36,5 +37,8 @@ def scale_data(xtrain, xtest):
     scaler = MinMaxScaler()
     xtrain_scaled = scaler.fit_transform(xtrain)
     xtest_scaled = scaler.transform(xtest)
+
+    with open('models/scaler.pkl', 'wb') as f:
+        pickle.dump(scaler, f)
     
     return xtrain_scaled, xtest_scaled
