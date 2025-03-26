@@ -1,17 +1,5 @@
-# from setuptools import find_packages, setup
-
-
-# setup(
-#     name='src',
-#     packages=find_packages(),
-#     version='0.1.0',
-#     description='Credit Risk Model code structuring',
-#     author='Swapnil Kangralkar',
-#     license='',
-# )
-
 from src.data.make_dataset import load_and_preprocess_data, split_data, scale_data
-from src.visualization.visualize import plot_correlation_heatmap, plot_feature_importance, plot_confusion_matrix
+from src.visualization.visualize import plot_feature_importance
 from src.features.build_features import create_dummy_vars
 from src.models.train_model import train_logistic_regression, train_random_forest
 from src.models.predict_model import evaluate_model, cross_validate_model
